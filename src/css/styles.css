@@ -6,3 +6,94 @@
     padding: 0;
     box-sizing: border-box;
 }
+
+:root {
+    --midNightGreen: #114B5F;
+    --teal: #028090;
+    --nyanza: #E4FDE1;
+    --lapisLazuli: #456990;
+    --brightPink: #F45B69;
+}
+
+body {
+    background-color: var(--brightPink);
+    min-height: 100vh;
+}
+
+h1 {
+    font-weight: 700;
+}
+
+.main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 75%;
+    margin: 0 auto;
+}
+
+.main h1.title {
+    margin: 100px;
+}
+
+.columns_container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.columns {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.column {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    margin: 20px;
+    background-color: var(--teal);
+    width: 25%;
+    min-height: 50vh;
+    border-radius: 10px;
+    box-shadow: 0 0 5px #272727;
+}
+
+.column h1 {
+    color: #ffffff;
+    margin-bottom: 10px;
+}
+
+.task_card {
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 0 5px #272727;
+    margin-bottom: 10px;
+    background-color: var(--nyanza);
+    position: relative;
+}
+
+.task_card .icons {
+    display: flex;
+    gap: 5px;
+    bottom: 10px;
+    right: 10px;
+    position: absolute;
+}
+
+.task_card .icons i {
+    cursor: pointer;
+}
+
+.fa-edit {
+    color: var(--lapisLazuli);
+}
+
+.fa-trash {
+    color: var(--brightPink);
+}
