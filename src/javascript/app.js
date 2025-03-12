@@ -1,4 +1,5 @@
 const columns = document.querySelectorAll(".column_container");
+let tasks = [];
 
 //variável que armazena o card arrastado
 let draggedCard;
@@ -44,11 +45,10 @@ const createCard = ({ target }) => {
     const focusOut = () => {
         card.contentEditable = "false";
         card.innerHTML += "<div class='icons'><i class='fa-edit fa-solid'></i><i class='fa-trash fa-solid'></i></div>";
-        if(card.textContent === "") card.remove();
+        card.textContent === "" ? card.remove() : tasks.push(card.textContent);
     };
 
-    card.addEventListener("focusout", focusOut);
-
+    //cria o card a partir da tecla enter
     card.addEventListener("keydown", ( { key } ) => {
         if (key === "Enter") {
             focusOut();
@@ -70,4 +70,20 @@ columns.forEach((column) => {
     column.addEventListener("drop", drop);
 
 });
+
+
+//não sei o que aconteceu aqui, se aconteceu não tô sabendo, mas a minha lógica é isso aí que aconteceu kkkkkkkkkkkkkk
+document.addEventListener("click", ({ target }) => {
+    const task = target.parentElement.parentElement.textContent;
+    const taskIndex = tasks.indexOf(task);
+    if (target.classList.contains("fa-edit")) {
+        target.parentElement.parentElement.contentEditable = "true";
+        target.parentElement.parentElement.focus();
+        if (taskIndex !== -1) tasks.splice(taskIndex, 1);
+    }
+    if (target.classList.contains("fa-trash")) {
+        if (taskIndex !== -1) tasks.splice(taskIndex, 1);
+        target.parentElement.parentElement.remove();
+    }
+})
  
