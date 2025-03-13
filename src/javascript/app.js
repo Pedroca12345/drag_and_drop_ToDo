@@ -1,5 +1,5 @@
 const columns = document.querySelectorAll(".column_container");
-let tasks = [];
+const tasks = [];
 
 //variável que armazena o card arrastado
 let draggedCard;
@@ -29,7 +29,7 @@ const drop = ( { target } ) => {
         target.classList.remove("column_highlight");
         target.append(draggedCard);
     }
-}
+};
 
 // cria um card de tarefa
 const createCard = ({ target }) => {
@@ -59,7 +59,7 @@ const createCard = ({ target }) => {
 
     target.append(card);
     card.focus();
-}
+};
 
 columns.forEach((column) => {
 
@@ -74,16 +74,21 @@ columns.forEach((column) => {
 
 //não sei o que aconteceu aqui, se aconteceu não tô sabendo, mas a minha lógica é isso aí que aconteceu kkkkkkkkkkkkkk
 document.addEventListener("click", ({ target }) => {
+    if (!target.classList.contains("fa-edit") || !!target.classList.contains("fa-trash")) return;
+
     const task = target.parentElement.parentElement.textContent;
     const taskIndex = tasks.indexOf(task);
+
     if (target.classList.contains("fa-edit")) {
         target.parentElement.parentElement.contentEditable = "true";
         target.parentElement.parentElement.focus();
         if (taskIndex !== -1) tasks.splice(taskIndex, 1);
     }
+
     if (target.classList.contains("fa-trash")) {
         if (taskIndex !== -1) tasks.splice(taskIndex, 1);
         target.parentElement.parentElement.remove();
     }
-})
- 
+});
+
+renderTasks();
